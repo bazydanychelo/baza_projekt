@@ -93,13 +93,13 @@
 		if($row['wyrzucony']==1) echo "wyrzucony"; else echo "nie wyrzucony";
 		if($row['Stan']==1) 
 		{
-			echo '</td><td><form action="dodanie_wypozyczenia.php" method="post">
+			echo '</td><td><form action="dodanie_rezerwacji.php" method="post">
 			<input type="hidden" name="idSprzet" value='.$row['idSprzet'].'>
 			<input type="submit" value="Wypożycz" /></form>	</td></tr>';
 		}
 		else 
 		{
-			echo '</td><td><form action="dodanie_wypozyczenia.php" method="post">
+			echo '</td><td><form action="dodanie_rezerwacji.php" method="post">
 			<input type="hidden" name="idSprzet" value='.$row['idSprzet'].'>
 			<input type="submit" value="Wypożycz" disabled /></form>	</td></tr>';
 		}
