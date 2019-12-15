@@ -20,7 +20,32 @@
 
 <?php
 	
-	echo $_POST['idSprzet'];
+	require_once "connect.php";
+	
+	$polaczenie= new mysqli($host,$db_user,$db_password,$db_name)
+	
+	
+	if ($polaczenie->connect_errno!=0)
+	{
+		echo "Error: ".$polaczenie->connect_errno;
+	}
+	else
+	{
+	
+
+	$ins = @$polaczenie->query("INSERT INTO wypozyczenia SET idPracownika='{$_SESSION['Stanowisko']}', idSprzetu='{$_POST['idSprzet']}',
+	Data_wyp='{$data}'");
+    
+    if($ins) echo "Sprzęt został wypożyczony";
+    else echo "Nie udało się wypożyczyć sprzętus";
+	
+	}
+	
+		
+		
+		
+	$polaczenie->close();
+	
 	
 	
 

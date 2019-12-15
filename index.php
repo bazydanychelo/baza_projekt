@@ -6,7 +6,7 @@
 </head>
 
 <body>
-
+		
 	<h1>Baza danych sprzetu</h1>
     <p>
 	<a href="logowanie_pracownik.php">Pracóóóóśownik</a>

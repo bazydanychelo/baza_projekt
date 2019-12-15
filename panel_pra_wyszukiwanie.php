@@ -39,18 +39,18 @@
 		
 		$rezultat_1=@$polaczenie->query("SELECT sprzet.idSprzet, sprzet.Nazwa_urzadzenia, sprzet.Typ_urzadzenia, wypozyczenia.Data_wyp, 
 		wypozyczenia.Data_zwrotu FROM wypozyczenia, sprzet WHERE wypozyczenia.idSprzetu=sprzet.idSprzet AND wypozyczenia.idPracownika=".$_SESSION['idPracownik']);
-		$rezultat_2=@$polaczenie->query("SELECT * FROM sprzet WHERE Stanowiska=".$_SESSION['Stanowisko']);
+		$rezultat_2=@$polaczenie->query("SELECT * FROM sprzet WHERE Stanowiska='{$_SESSION['Stanowisko']}' AND Nazwa_urzadzenia LIKE '%{$_POST['search']}%'");
 		
 		
 		/*
-		$lista_sprzetu_do_wypozyczenia=$rezultat->fetch_assoc();
-		$_SESSION['idSprzet']=$lista_sprzetu_do_wypozyczenia['idSprzet'];
-		$_SESSION['Nazwa_urzadzenia']=$lista_sprzetu_do_wypozyczenia['Nazwa_urzadzenia'];
-		$_SESSION['Typ_urzadzenia']=$lista_sprzetu_do_wypozyczenia['Typ_urzadzenia'];
-		$_SESSION['Lokalizacja']=$lista_sprzetu_do_wypozyczenia['Lokalizacja'];
-		$_SESSION['dostepnosc']=$lista_sprzetu_do_wypozyczenia['dostepnosc'];
-		$_SESSION['Stan']=$lista_sprzetu_do_wypozyczenia['Stan'];
-		$_SESSION['wyrzucony']=$lista_sprzetu_do_wypozyczenia['wyrzucony'];
+		$row=$rezultat->fetch_assoc();
+		$_SESSION['idSprzet']=$row['idSprzet'];
+		$_SESSION['Nazwa_urzadzenia']=$row['Nazwa_urzadzenia'];
+		$_SESSION['Typ_urzadzenia']=$row['Typ_urzadzenia'];
+		$_SESSION['Lokalizacja']=$row['Lokalizacja'];
+		$_SESSION['dostepnosc']=$row['dostepnosc'];
+		$_SESSION['Stan']=$row['Stan'];
+		$_SESSION['wyrzucony']=$row['wyrzucony'];
 		echo $_SESSION['Nazwa_urzadzenia'];
 		*/
 		
@@ -76,7 +76,15 @@
 		
 		
 		while($row = mysqli_fetch_array($rezultat_2))
-		{echo '<tr><td>'.$row['idSprzet'].'</td><td>'.$row['Nazwa_urzadzenia'].
+		{
+		$_SESSION['idSprzet']=$row['idSprzet'];
+		$_SESSION['Nazwa_urzadzenia']=$row['Nazwa_urzadzenia'];
+		$_SESSION['Typ_urzadzenia']=$row['Typ_urzadzenia'];
+		$_SESSION['Lokalizacja']=$row['Lokalizacja'];
+		$_SESSION['dostepnosc']=$row['dostepnosc'];
+		$_SESSION['Stan']=$row['Stan'];
+		$_SESSION['wyrzucony']=$row['wyrzucony'];
+		echo '<tr><td>'.$row['idSprzet'].'</td><td>'.$row['Nazwa_urzadzenia'].
 		'</td><td>'.$row['Typ_urzadzenia'].'</td><td>'; 
 		if($row['dostepnosc']==1) echo "dostępny"; else echo "niedostepny";
 		echo '</td><td>';
