@@ -2,9 +2,9 @@
 
 	session_start();
 
-	if(!isset($_SESSION['zalogowany']))
+  if(!isset($_SESSION['log_positive']))
 	{
-		header('Location: logowanie_pracownik.php');
+		header('Location: logowanie_operator.php');
 		exit();
 	}
 
@@ -39,20 +39,19 @@
 
 
 
-	$ins = @$polaczenie->query("INSERT INTO rezerwacje SET idpracownika='{$_SESSION['idPracownik']}', idsprzetu='{$_POST['idSprzet']}',
-	Stan='{$_POST['Stan']}', data_rezerwacji='".date("Y-m-d")."'");
+	$ins = @$polaczenie->query("DELETE FROM naprawy WHERE idNaprawy='{$_POST['idNaprawy']}'");
 
 	if($ins)
 	{
-		echo "<h1>Zgłoszenie zostało przekazane do dyspozytora!</h1>";
-		$act= @$polaczenie->query("UPDATE sprzet SET dostepnosc=0 WHERE idSprzet='{$_POST['idSprzet']}'");
-		if($act) echo "<h1>Dostępność sprzętu została zmieniona na niedostępny</h1>";
+		echo "<h1>Naprawiony sprzęt został zwrócony!</h1>";
+    $polaczenie->query("UPDATE sprzet SET Stan=1 WHERE idSprzet='{$_POST['idSprzet']}'");
+    $polaczenie->query("UPDATE sprzet SET dostepnosc=1 WHERE idSprzet='{$_POST['idSprzet']}'");
 	}
-	else echo "Nie udało się przekazać zgłoszenia!";
+	else echo "Nie udało się zwrócić naprawionego sprzętu!";
 
-	
+
 	echo "<br>Po kilku sekundach nastąpi przekierowanie na stronę główną";
-	header("refresh:5;url=panel_pra_wyszukiwanie.php");
+	header("refresh:5;url=zepsucia_naprawy.php");
 
 
 	}
@@ -71,7 +70,7 @@
 
 	<br>
 	<p>
-	<a href="panel_pra_wyszukiwanie.php">wróć</a>
+	<a href="zepsucia_naprawy.php">wróć</a>
     </p>
 
 </body>

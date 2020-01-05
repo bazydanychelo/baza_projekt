@@ -15,17 +15,17 @@
 
 <body>
 
-	<h1>Logowanie </h1>
-	<form action="uwierzytelnienie_operator.php" method="post"> 
-		Login 
-		<input type="text" name="login" />	
+	<h1>Logowanie operator</h1>
+	<form action="uwierzytelnienie_operator.php" method="post">
+		Login
+		<input type="text" name="login" />
 			<br /><br />
-		Hasło 
+		Hasło
 		<input type="password" name="haslo" />
 			<br /><br />
 		<input type="submit" value="Zaloguj" />
 	</form>
-	
+
 <?php
 	if(isset($_SESSION['log_error'])) echo $_SESSION['log_error'];
 ?>

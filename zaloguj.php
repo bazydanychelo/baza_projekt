@@ -23,7 +23,7 @@
 		
 		$login=htmlentities($login, ENT_QUOTES, "UTF-8");
 		$haslo=htmlentities($haslo, ENT_QUOTES, "UTF-8");
-		
+		/*fuzzing kodu (gdzie są błędy bezpieczeństwa*/
 		
 		if ($rezultat=@$polaczenie->query(sprintf("SELECT * FROM pracownik 
 		WHERE email='%s' AND haslo=md5('%s')",
@@ -47,7 +47,7 @@
 				
 				unset($_SESSION['blad']);
 				$rezultat->close();
-				header('Location: panel_pracownika.php');
+				header('Location: panel_pra_wyszukiwanie.php');
 			}
 			else
 			{

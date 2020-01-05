@@ -2,9 +2,9 @@
 
 	session_start();
 
-	if(!isset($_SESSION['zalogowany']))
+  if(!isset($_SESSION['log_positive']))
 	{
-		header('Location: logowanie_pracownik.php');
+		header('Location: logowanie_operator.php');
 		exit();
 	}
 
@@ -35,24 +35,24 @@
 /*
 	@$polaczenie->query("CREAT TRIGGER akt_dost_sprz AFTER INSERT ON rezerwacje FOR EACH ROW BEGIN
 		UPDATE sprzet SET dostepnosc=0 WHERE idSprzet='{$_POST['idSprzet']}' END");
+		INSERT INTO `histroia_napraw`(idhist_napra,Idsprzetu,Opis,Koszt,Data_wydania,Data_zwrotu) VALUES (OLD.idhist_napra,OLD.Idsprzetu,OLD.Opis,OLD.Koszt,OLD.Data_wydania,OLD.Data_zwrotu);
+
 */
 
 
 
-	$ins = @$polaczenie->query("INSERT INTO rezerwacje SET idpracownika='{$_SESSION['idPracownik']}', idsprzetu='{$_POST['idSprzet']}',
-	Stan='{$_POST['Stan']}', data_rezerwacji='".date("Y-m-d")."'");
+	$ins = @$polaczenie->query("INSERT INTO naprawy SET Idsprzetu='{$_POST['idSprzet']}', Opis='{$_POST['Opis']}', Data_wydania='".date("Y-m-d")."'");
 
 	if($ins)
 	{
-		echo "<h1>Zgłoszenie zostało przekazane do dyspozytora!</h1>";
-		$act= @$polaczenie->query("UPDATE sprzet SET dostepnosc=0 WHERE idSprzet='{$_POST['idSprzet']}'");
-		if($act) echo "<h1>Dostępność sprzętu została zmieniona na niedostępny</h1>";
+		echo "<h1>Uszkodzony sprzęt został wysłany do naprawy!</h1>";
+		$polaczenie->query("DELETE FROM zepsucia WHERE idZepsucia='{$_POST['idZepsucia']}'");
 	}
-	else echo "Nie udało się przekazać zgłoszenia!";
+	else echo "Nie udało się wysłać uszkodzonoego sprzętu do naprawy!";
 
-	
+
 	echo "<br>Po kilku sekundach nastąpi przekierowanie na stronę główną";
-	header("refresh:5;url=panel_pra_wyszukiwanie.php");
+	header("refresh:5;url=zepsucia_naprawy.php");
 
 
 	}
@@ -71,7 +71,7 @@
 
 	<br>
 	<p>
-	<a href="panel_pra_wyszukiwanie.php">wróć</a>
+	<a href="zepsucia_naprawy.php">wróć</a>
     </p>
 
 </body>
