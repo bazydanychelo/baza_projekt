@@ -60,6 +60,26 @@ CREATE TRIGGER `odswiezanie_his_nap` BEFORE DELETE ON `naprawy` FOR EACH ROW INS
 $$
 DELIMITER ;
 
+--
+-- Zrzut danych tabeli `naprawy`
+--
+
+INSERT INTO `naprawy` (`idNaprawy`, `Idsprzetu`, `Opis`, `Koszt`, `Data_wydania`, `Data_zwrotu`) VALUES
+(1,34,'Pekniety ekran',300,2019-12-12,2019-12-12),
+(2,180,'Wymiana baterii',100,2019-12-13,2019-12-13),
+(3,23,'Wymiana wejścia',100,2019-12-16,2019-12-16),
+(4,453,'Rysa',150,2019-12-17,2019-12-17),
+(5,2123,'Wymiana gniazda',130,2019-12-17,2019-12-17),
+(6,4353,'Naprawa szybki',150,2019-12-18,2019-12-18),
+(7,454,'Zmiana obudowy',50,2019-12-19,2019-12-19),
+(8,765,'Naprawa mikrofonu',100,2019-12-20,2019-12-20),
+(9,9076,'Naprawa aparatu',200,2019-12-20,2019-12-20),
+(10,5453,'Wymiana szybki',150,2019-12-21,2019-12-21),
+(11,2121,'Naprawa baterii',100,2019-12-21,2019-12-21),
+(12,111,'Pekniety ekran',300,2019-12-22,2019-12-22),
+(13,642,'Wymiana wyświetlacza',250,2019-12-27,2019-12-27),
+(14,3643,'Naprawa gniazda',130,2019-12-28,2019-12-28);
+
 -- --------------------------------------------------------
 
 --
