@@ -36,9 +36,7 @@
 	{
 
 
-    $rezultat_1=@$polaczenie->query("SELECT wypozyczenia.idWypozyczenia, wypozyczenia.Data_wyp, wypozyczenia.kiedy_zwrot, wypozyczenia.Data_zwrotu,
-      wypozyczenia.Stan_zwrotu, wypozyczenia.dyspozytor_zwr, sprzet.idSprzet, sprzet.Nazwa_urzadzenia, sprzet.Typ_urzadzenia, pracownik.Godnosc, wypozyczenia.dyspozytor_zwr
-      FROM sprzet, pracownik, wypozyczenia WHERE wypozyczenia.idSprzetu=sprzet.idSprzet AND pracownik.idPracownik=wypozyczenia.idPracownika");
+    $rezultat_1=@$polaczenie->query("SELECT * FROM `hist_wyp`");
 
 
 

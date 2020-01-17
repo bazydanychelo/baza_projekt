@@ -37,24 +37,14 @@
 	else
 	{
 
-		$rezultat_1=@$polaczenie->query("SELECT sprzet.idSprzet, sprzet.Nazwa_urzadzenia, sprzet.Typ_urzadzenia, wypozyczone.Data_wyp,
-		wypozyczone.kiedy_zwrot, wypozyczone.idWypozyczone FROM wypozyczone, sprzet WHERE wypozyczone.idSprzetu=sprzet.idSprzet AND wypozyczone.idPracownika=".$_SESSION['idPracownik']);
-		$rezultat_2=@$polaczenie->query("SELECT * FROM sprzet WHERE Stanowiska='{$_SESSION['Stanowisko']}' AND Nazwa_urzadzenia LIKE '%{$_POST['search']}%'");
+		$rezultat_1=@$polaczenie->query("SELECT * FROM wypozyczone_pracownik WHERE wypozyczone_pracownik.idPracownika=".$_SESSION['idPracownik']);
 
-
-		/*
-		$row=$rezultat->fetch_assoc();
-		$_SESSION['idSprzet']=$row['idSprzet'];
-		$_SESSION['Nazwa_urzadzenia']=$row['Nazwa_urzadzenia'];
-		$_SESSION['Typ_urzadzenia']=$row['Typ_urzadzenia'];
-		$_SESSION['Lokalizacja']=$row['Lokalizacja'];
-		$_SESSION['dostepnosc']=$row['dostepnosc'];
-		$_SESSION['Stan']=$row['Stan'];
-		$_SESSION['wyrzucony']=$row['wyrzucony'];
-		echo $_SESSION['Nazwa_urzadzenia'];
-		*/
-
-
+		if(isset($_POST['dostepny']))
+			{$rezultat_2=@$polaczenie->query("SELECT * FROM opt_wys_sprz WHERE Stanowiska='{$_SESSION['Stanowisko']}' AND dostepnosc='{$_POST['dostepny']}'
+			AND Nazwa_urzadzenia LIKE '%{$_POST['search']}%' OR Typ_urzadzenia LIKE '%{$_POST['search']}%' AND Stanowiska='{$_SESSION['Stanowisko']}' AND dostepnosc='{$_POST['dostepny']}'");}
+			else
+			{$rezultat_2=@$polaczenie->query("SELECT * FROM opt_wys_sprz WHERE Stanowiska='{$_SESSION['Stanowisko']}' AND Nazwa_urzadzenia LIKE '%{$_POST['search']}%'
+				OR Typ_urzadzenia LIKE '%{$_POST['search']}%' AND Stanowiska='{$_SESSION['Stanowisko']}'");}
 		echo "<p><table border='1' cellpading='10' cellspacing='1'>";
 		echo "<caption align='center'><b>Co już wypożyczyłeś</b></caption>";
 		echo "<tr> <td><b>Numer sprzętu</b></td> <td><b>Nazwa urządzenia</b></td> <td><b>Typ urządzenia</b></td> <td><b>Data wypożyczenia</b></td>";
@@ -76,7 +66,10 @@
 
 		echo "<p><table border='1' cellpading='10' cellspacing='1'>";
 		echo '<caption align="center"><b>Co chcesz wypożyczyć?</b> <form action="panel_pra_wyszukiwanie.php" method="post">
-		<input type="text" name="search" /> <input type="submit" value="Wyszukaj" /> </form>  </caption>';
+		<input type="text" name="search" />
+		<input type="radio" name="dostepny" value="1" />dostępny
+		<input type="radio" name="dostepny" value="0" />niedostępny
+		<input type="submit" value="Wyszukaj" /> </form>  </caption>';
 		echo "<tr> <td><b>Numer sprzętu</b></td> <td><b>Nazwa urządzenia</b></td> <td><b>Typ urządzenia</b></td> <td><b>Dostępność</b></td>";
 		echo "<td><b>Stan</b></td> <td><b>Czy został wyrzucony</b></td> </tr>";
 
@@ -86,7 +79,6 @@
 		$_SESSION['idSprzet']=$row['idSprzet'];
 		$_SESSION['Nazwa_urzadzenia']=$row['Nazwa_urzadzenia'];
 		$_SESSION['Typ_urzadzenia']=$row['Typ_urzadzenia'];
-		$_SESSION['Lokalizacja']=$row['Lokalizacja'];
 		$_SESSION['dostepnosc']=$row['dostepnosc'];
 		$_SESSION['Stan']=$row['Stan'];
 		$_SESSION['wyrzucony']=$row['wyrzucony'];

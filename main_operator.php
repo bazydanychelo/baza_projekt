@@ -35,24 +35,12 @@
 	else
 	{
 
-		$rezultat_1=@$polaczenie->query("SELECT sprzet.idSprzet, sprzet.Nazwa_urzadzenia, sprzet.Typ_urzadzenia, pracownik.Godnosc, pracownik.idPracownik,
-		rezerwacje.data_rezerwacji, rezerwacje.idRezerwacje FROM pracownik, sprzet, rezerwacje WHERE rezerwacje.idsprzetu=sprzet.idSprzet AND pracownik.idPracownik=rezerwacje.Idpracownika");
-		$rezultat_2=@$polaczenie->query("SELECT sprzet.idSprzet, sprzet.Nazwa_urzadzenia, sprzet.Typ_urzadzenia, pracownik.Godnosc, pracownik.idPracownik,
-		zwroty.Data_zwrotu, zwroty.idZwrotu, zwroty.Stan_zwrotu FROM pracownik, sprzet, zwroty WHERE zwroty.idsprzetu=sprzet.idSprzet AND pracownik.idPracownik=zwroty.Idpracownika");
-		/*$rezultat_2=@$polaczenie->query("SELECT * FROM sprzet WHERE Stanowiska='{$_SESSION['Stanowisko']}' AND Nazwa_urzadzenia LIKE '%{$_POST['search']}%'");*/
+		$rezultat_1=@$polaczenie->query("SELECT * FROM `rezerwacje_wypo`");
+		$rezultat_2=@$polaczenie->query("SELECT * FROM `zwroty_wypo`");
 
 
-		/*
-		$row=$rezultat->fetch_assoc();
-		$_SESSION['idSprzet']=$row['idSprzet'];
-		$_SESSION['Nazwa_urzadzenia']=$row['Nazwa_urzadzenia'];
-		$_SESSION['Typ_urzadzenia']=$row['Typ_urzadzenia'];
-		$_SESSION['Lokalizacja']=$row['Lokalizacja'];
-		$_SESSION['dostepnosc']=$row['dostepnosc'];
-		$_SESSION['Stan']=$row['Stan'];
-		$_SESSION['wyrzucony']=$row['wyrzucony'];
-		echo $_SESSION['Nazwa_urzadzenia'];
-		*/
+
+
 
 
 		echo "<p><table border='1' cellpading='10' cellspacing='1'>";
@@ -98,7 +86,7 @@
 			<input type="text" name="Opis_usz" /> </td><td>
 			<input type="submit" value="Oddany!" /></form>	</td></tr>';}
 		echo "</p>";
-	
+
 	}
 
 ?>

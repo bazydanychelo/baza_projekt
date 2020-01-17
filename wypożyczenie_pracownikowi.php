@@ -38,8 +38,9 @@
 
 	$_SESSION['kiedy_zwrot']=$_POST['kiedy_zwrot'];
 
-	$ins = @$polaczenie->query("INSERT INTO wypozyczenia SET idPracownika='{$_POST['idPracownik']}', idSprzetu='{$_POST['idSprzet']}',
+	$ins = @$polaczenie->query("INSERT INTO wypozyczenia SET idWypozyczenia='{$_POST['idRezerwacje']}', idPracownika='{$_POST['idPracownik']}', idSprzetu='{$_POST['idSprzet']}',
 	Data_wyp='".date("Y-m-d")."', kiedy_zwrot='{$_POST['kiedy_zwrot']}',  dyspozytor_wyd='{$_SESSION['id']}'");
+	$_SESSION['idRezerwacje']=$_POST['idRezerwacje'];
 
 	if($ins)
 	{

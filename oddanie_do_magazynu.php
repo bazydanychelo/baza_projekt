@@ -32,7 +32,7 @@
 	else
 	{
 
-		$ins = @$polaczenie->query("UPDATE wypozyczenia SET Data_zwrotu='{$_POST['Data_zwrotu']}',  Stan_zwrotu='{$_POST['Stan']}', dyspozytor_zwr='{$_SESSION['id']}'");
+		$ins = @$polaczenie->query("UPDATE wypozyczenia SET Data_zwrotu='{$_POST['Data_zwrotu']}',  Stan_zwrotu='{$_POST['Stan']}', dyspozytor_zwr='{$_SESSION['id']}' WHERE idWypozyczenia='{$_SESSION['idRezerwacje']}'");
 		if($ins)
     {
       echo "<h1>Sprzęt został pomyślnie oddany do magazynu!</h1>";

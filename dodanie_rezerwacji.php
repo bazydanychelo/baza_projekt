@@ -32,10 +32,7 @@
 	}
 	else
 	{
-/*
-	@$polaczenie->query("CREAT TRIGGER akt_dost_sprz AFTER INSERT ON rezerwacje FOR EACH ROW BEGIN
-		UPDATE sprzet SET dostepnosc=0 WHERE idSprzet='{$_POST['idSprzet']}' END");
-*/
+
 
 
 
@@ -50,7 +47,7 @@
 	}
 	else echo "Nie udało się przekazać zgłoszenia!";
 
-	
+
 	echo "<br>Po kilku sekundach nastąpi przekierowanie na stronę główną";
 	header("refresh:5;url=panel_pra_wyszukiwanie.php");
 
