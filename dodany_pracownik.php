@@ -33,14 +33,11 @@
 <head>
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<title>po zrobieniu praconika</title>
+	<title>po zrobieniu pracownika</title>
 </head>
 
 <body>
-	
-	Pracownik został dodany
-	<?php
-	header('Location: main_operator.php');
-	?> 
+	Rejestracja przebiegła pomyślnie
+	<a href="main_operator.php">Wroc do strony glownej</a>
 </body>
 </html>

@@ -17,7 +17,7 @@
 		$haslo=htmlentities($haslo, ENT_QUOTES, "UTF-8");
 		
 
-		$sql= "SELECT * FROM operator WHERE Telefon='$login' AND haslo='$haslo'";
+		$sql= "SELECT * FROM operator WHERE Telefon='$login' AND haslo=md5('$haslo')";
 
 		if($result=@$connect->query($sql))
 		{

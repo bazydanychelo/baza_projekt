@@ -19,8 +19,8 @@
 		}
 		
 		
-		$Stanowisko=$_POST['Stanowisko'];
-		if (strlen($Stanowisko)!=1)
+		$Rola=$_POST['Rola'];
+		if (strlen($Rola)!=1)
 		{
 			$walidacja_user=false;
 			$_SESSION['e_stanowisko']="Wymagana liczba od 1 do 3";
@@ -94,7 +94,7 @@
 				{
 					//Hurra, wszystkie testy zaliczone, dodajemy gracza do bazy
 					
-					if ($polaczenie->query("INSERT INTO pracownik VALUES (NULL, '$Godnosc', '$Stanowisko', '$Telefon', 1, '$email', '$haslo_hash')"))
+					if ($polaczenie->query("INSERT INTO operator VALUES (NULL, '$Godnosc', '$Rola', '$Telefon', 1, '$haslo_hash', '$email')"))
 					{
 						$_SESSION['udanarejestracja']=true;
 						header('Location: dodany_pracownik.php');
@@ -155,6 +155,7 @@
 
 Dodaj operatora <br><br>
 
+
 	<form method="post">
 		Godność: <br/> <input type="text" name="Godnosc" /><br />
 		<?php
@@ -168,7 +169,7 @@ Dodaj operatora <br><br>
 		
 		
 		
-		Stanowisko: <br/> <input type="text" name="Stanowisko" /><br />		
+		Rola: <br/> <input type="text" name="Rola" /><br />		
 		<?php
 		if (isset($_SESSION['e_stanowisko']))
 		{

@@ -95,6 +95,9 @@
 <a href="dodaj_uzytkownika.php">Dodaj użytkownika</a>
 </p>
 <p>
+<a href="dodaj_operatora.php">Dodaj operatora</a>
+</p>
+<p>
 <a href="historia_wypozyczen.php">Historia wypożyczeń</a>
 </p>
 <p>
